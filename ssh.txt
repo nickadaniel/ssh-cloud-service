@@ -1,0 +1,12 @@
+[Interface]
+ Address = 192.168.69.1/24
+ PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+ PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+ ListenPort = 51820
+ PrivateKey = <This Ubuntu Servers Private Key>
+
+[Peer]
+# Test Debian Client
+ PublicKey=<The Public Key of the Debian Client>
+ AllowedIPs=192.168.69.2
+ PersistentKeepalive=25
